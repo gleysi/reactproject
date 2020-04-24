@@ -5,6 +5,7 @@ import Footer from './FooterComponent';
 import Home from './HomeComponent';
 import Contact from './ContactComponent';
 import DishDetail from './DishdetailComponent';
+import About from './AboutComponent';
 import { DISHES } from '../shared/dishes';
 import { COMMENTS } from '../shared/comments';
 import { PROMOTIONS } from '../shared/promotions';
@@ -42,11 +43,20 @@ class Main extends Component {
       );
     };
 
+    const RenderLeader = () => {
+      return(
+        <About
+          leaders={this.state.leaders}
+        />
+      );
+    }
+
     return (
       <div>
         <Header />
         <Switch>
           <Route path='/home' component={HomePage} />
+          <Route path='/aboutus' component={RenderLeader} />
           <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} />} />
           <Route path='/menu/:dishId' component={DishWithId} />
           <Route exact path='/contactus' component={Contact} />} />

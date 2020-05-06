@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody, CardTitle, Breadcrumb, BreadcrumbItem, Button, Modal, ModalHeader, ModalBody, Row, Col, Label } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Control, Errors, Form } from 'react-redux-form';
 import { Loading } from './LoadingComponent';
 
 
@@ -125,6 +125,8 @@ export class CommentForm extends Component {
         this.toggleModal();
         this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
         alert("Current state is: " + JSON.stringify(values));
+        this.props.resetFeedbackForm();
+        // event.preventDefault();
     }
 
     render() {
@@ -139,7 +141,7 @@ export class CommentForm extends Component {
                         <ModalHeader toggle={this.toggleModal}> Submit comment</ModalHeader>
                         <ModalBody>
                             <div className="col-12 col-md-9">
-                                <LocalForm onSubmit={(values) => this.handleSubmit(values)} >
+                                <Form model="feedback" onSubmit={(values) => this.handleSubmit(values)} >
                                     <Row className="form-group">
                                         <Label htmlFor="rating">Rating</Label>
                                         <Col md={10}>
@@ -170,7 +172,7 @@ export class CommentForm extends Component {
                                     </Row>
 
                                     <Button type="submit" value="submit" color="primary">Submit</Button>
-                                </LocalForm>
+                                </Form>
                             </div>
                         </ModalBody>
                     </Modal>

@@ -9,7 +9,7 @@ import { baseUrl } from '../shared/baseUrl';
         return(
             <div className="col-xs-12 col-sm-12 col-md-5 m-1">
                 <Card>
-                    <CardImg top src={baseUrl + dish.image} alt={dish.name} />
+                    <CardImg top src={baseUrl + 'assets/' + dish.image} alt={dish.name} />
                     <CardBody>
                         <CardTitle>{dish.name}</CardTitle>
                         <CardText>{dish.description}</CardText>
@@ -19,7 +19,7 @@ import { baseUrl } from '../shared/baseUrl';
         );
     }
 
-    function RenderComments({comments, addComment, dishId}) {
+    function RenderComments({comments, postComment, dishId}) {
         if (comments != null) {
             return (
                 <div className="col-xs-12 col-sm-12 col-md-5 m-1">
@@ -34,7 +34,7 @@ import { baseUrl } from '../shared/baseUrl';
                             );
                         })}
                     </ul>
-                    <CommentForm dishId={dishId} addComment={addComment} />
+                    <CommentForm dishId={dishId} postComment={postComment} />
                 </div>
             );
         } 
@@ -82,7 +82,7 @@ import { baseUrl } from '../shared/baseUrl';
                     <div className="row">
                         <RenderDish dish={props.dish} />
                         <RenderComments comments={props.comments}
-                            addComment={props.addComment}
+                            postComment={props.postComment}
                             dishId={props.dish.id}
                         />
                     </div>
@@ -123,7 +123,7 @@ export class CommentForm extends Component {
 
     handleSubmit(values) {
         this.toggleModal();
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
         alert("Current state is: " + JSON.stringify(values));
         this.props.resetFeedbackForm();
         // event.preventDefault();

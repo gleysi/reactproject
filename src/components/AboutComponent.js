@@ -7,16 +7,18 @@ import { FadeTransform, Fade, Stagger } from 'react-animation-components';
 
 function RenderLeader({ leader }) {
     return(
-        <Media className="mx-md-n5">
-            <Media left className="py-3 px-md-5">
-                <Media object src={baseUrl + leader.image} alt={leader.name} />
+        <Fade in>
+            <Media className="mx-md-n5">
+                <Media left className="py-3 px-md-5">
+                    <Media object src={baseUrl + leader.image} alt={leader.name} />
+                </Media>
+                <Media body className="py-3 px-md-5">
+                    <Media heading>{leader.name}</Media>
+                    {leader.designation} <br></br>
+                    {leader.description}
+                </Media>
             </Media>
-            <Media body className="py-3 px-md-5">
-                <Media heading>{leader.name}</Media>
-                {leader.designation} <br></br>
-                {leader.description}
-            </Media>
-        </Media>
+        </Fade>
     );
 }
 
